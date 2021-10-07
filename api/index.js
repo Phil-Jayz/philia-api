@@ -10,11 +10,11 @@ const patientRouter = require("./ressources/patient/patient.router")
 const restApi = express.Router();
 
 restApi.use("/user", authRouter);
-restApi.use("/issue", bodyLocationRouter);
-restApi.use("/hospital", hospitalRouter);
-restApi.use("/symptom", issueRouter);
+restApi.use("/issue", issueRouter);
+//restApi.use("/hospital", hospitalRouter);
+restApi.use("/symptom", symptomRouter);
 restApi.use("/private", privateRouter);
-restApi.use("/body-location", symptomRouter);
+restApi.use("/body-location", bodyLocationRouter);
 restApi.use("/speciality", specialityRouter);
 restApi.use("/patient", patientRouter);
 

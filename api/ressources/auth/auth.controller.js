@@ -247,8 +247,8 @@ exports.sendRefreshToken = async (req, res, next) => {
         new ErrorResponse("Not authorized to access this ressources", 401)
       );
     }
-    const phoneNumber = verifyRefreshToken(refreshToken, next);
-    sendToken(phoneNumber, 200, res, next);
+    const phoneNumber = verifyRefreshToken(req.params.userId, refreshToken, next);
+    sendToken(req.params.userId, phoneNumber, 200, res, next);
   } catch (error) {
     next(error);
   }

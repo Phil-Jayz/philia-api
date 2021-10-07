@@ -11,9 +11,9 @@ const {
 
 const { protectedRoute } = require("../../../middleware/protectedRoute");
 
-bodyLocationRouter.route("/add/:userId").post(protectedRoute, add);
-bodyLocationRouter.route("/:_id/:userId").get(protectedRoute, getAll);
-bodyLocationRouter.route("/:Name/:userId").get(protectedRoute, getByName);
-bodyLocationRouter.route("/getById/:ID/:userId").get(protectedRoute, getById);
+bodyLocationRouter.route("/add/:userPath").post(protectedRoute, add);
+bodyLocationRouter.route("/:userPath").get(protectedRoute, getAll);
+bodyLocationRouter.route("/:Name/:userPath").get(protectedRoute, getByName);
+bodyLocationRouter.route("/getById/:ID/:userPath").get(protectedRoute, getById);
 
 module.exports = bodyLocationRouter;

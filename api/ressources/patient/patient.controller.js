@@ -54,19 +54,19 @@ exports.getByUserId = (req, res, next) => {
 };
 
 exports.add = async (req, res, next) => {
-  const { userId } = req.params;
+  const { userPath } = req.params;
   const { firstName, lastName, gender, bloodType, height, weight, birthDate } =
     req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(userPath);
     if (!user) {
       res.status(404).json({
         success: false,
         error: "No user found with this id, you need to register first",
       });
     } else  {
-      const registeredPatient = await Patient.findOne({userId});
+      const registeredPatient = await Patient.findOne({userId: userPath});
       if (registeredPatient){
         res.status(400).json({
           success: false,
@@ -74,7 +74,7 @@ exports.add = async (req, res, next) => {
         });
       }
       const patient = await Patient.create({
-        userId,
+        userId: userPath,
         firstName,
         lastName,
         gender,

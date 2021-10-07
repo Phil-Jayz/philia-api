@@ -5,7 +5,7 @@ const { checkValidity } = require("../utils/rsa");
 
 exports.protectedRoute = async (req, res, next) => {
   let accessToken;
-  const {userId} = req.params;
+  const {userPath} = req.params;
 
   if (
     req.headers.authorization &&
@@ -21,7 +21,7 @@ exports.protectedRoute = async (req, res, next) => {
   try {
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
 
-    const phoneNumber = checkValidity(userId, decoded.id);
+    const phoneNumber = checkValidity(userPath, decoded.id);
     const user = await User.findOne({phoneNumber: phoneNumber});
 
     if (!user) {

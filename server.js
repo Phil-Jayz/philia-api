@@ -14,7 +14,7 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 require("./config/redis");
 
-//const restRApi = require("./api");
+const restRApi = require("./api");
 
 connectDB();
 app.use(compression());
@@ -51,7 +51,7 @@ app.get("/test", (req, res, next) => {
 });
 
 app.use("/doc", express.static(path.join(__dirname, "public/users")));
-//app.use("/api", restRApi);
+app.use("/", restRApi);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

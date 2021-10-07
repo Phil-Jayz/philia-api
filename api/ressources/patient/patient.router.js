@@ -12,10 +12,10 @@ const {
 
 const { protectedRoute } = require("../../../middleware/protectedRoute");
 
-patientRouter.route("/add/:userId").post(protectedRoute, add);
-patientRouter.route("/:userId").get(protectedRoute, getAll);
-patientRouter.route("/:_id/:userId").get(protectedRoute, getById);
-patientRouter.route("/getByName/:firstName/:userId").get(protectedRoute, getByName);
-patientRouter.route("/getByUseId/:userId").get(protectedRoute, getByUserId);
+patientRouter.route("/add/:userPath").post(protectedRoute, add);
+patientRouter.route("/:userPath").get(protectedRoute, getAll);
+patientRouter.route("/:_id/:userPath").get(protectedRoute, getById);
+patientRouter.route("/getByName/:firstName/:userPath").get(protectedRoute, getByName);
+patientRouter.route("/getByUserId/:userId/:userPath").get(protectedRoute, getByUserId);
 
 module.exports = patientRouter;
