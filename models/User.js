@@ -9,6 +9,11 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     ref: "Patient"
   },
+  doctorId: {
+    type: mongoose.Types.ObjectId,
+    unique: true,
+    ref: "Doctor"
+  },
   email: {
     type: String,
     unique: true,

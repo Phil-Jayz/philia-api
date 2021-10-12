@@ -17,7 +17,7 @@ exports.getAll = (req, res, next) => {
 exports.getByName = (req, res, next) => {
   const { fistName } = req.params;
   Patient.find({ fistName })
-    .populate({ path: "userId", model: "User" })
+  .populate({ path: "userId", model: "User" }, {path: "patientOtherInfoId", model: "patientOtherInfo"})
     .exec((err, patient) => {
       if (err) {
         res.status(400).send(err);
@@ -30,7 +30,7 @@ exports.getByName = (req, res, next) => {
 exports.getById = (req, res, next) => {
   const { _id } = req.params;
   Patient.findOne({ _id })
-    .populate({ path: "userId", model: "User" })
+  .populate({ path: "userId", model: "User" }, {path: "patientOtherInfoId", model: "patientOtherInfo"})
     .exec((err, patient) => {
       if (err) {
         res.status(400).send(err);
@@ -43,7 +43,7 @@ exports.getById = (req, res, next) => {
 exports.getByUserId = (req, res, next) => {
   const { userId } = req.params;
   Patient.findOne({ userId })
-    .populate({ path: "userId", model: "User" })
+    .populate({ path: "userId", model: "User" }, {path: "patientOtherInfoId", model: "patientOtherInfo"})
     .exec((err, patient) => {
       if (err) {
         res.status(400).send(err);
@@ -52,6 +52,20 @@ exports.getByUserId = (req, res, next) => {
       }
     });
 };
+
+exports.getByGender = (req, res, next) => {
+  const { gender } = req.params;
+  Patient.find({ gender })
+  .populate({ path: "userId", model: "User" }, {path: "patientOtherInfoId", model: "patientOtherInfo"})
+    .exec((err, patient) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).json({ success: true, data: patient });
+      }
+    });
+  };
+    
 
 exports.add = async (req, res, next) => {
   const { userPath } = req.params;

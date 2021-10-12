@@ -7,6 +7,10 @@ const PatientSchema = new mongoose.Schema({
     unique: true,
     ref: "User"
   },
+  patientOtherInfoId : {
+    type: mongoose.Types.ObjectId,
+    ref: "PatientOtherInfo"
+  },
   firstName: {
     type: String,
     required: [true, "Please enter your firstName"],

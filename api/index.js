@@ -7,6 +7,8 @@ const privateRouter = require("./ressources/private/private.router");
 const symptomRouter = require("./ressources/symptom/symptom.router");
 const specialityRouter = require("./ressources/speciality/speciality.router");
 const patientRouter = require("./ressources/patient/patient.router")
+const doctorRouter = require("./ressources/doctor/doctor.router")
+const patientOtherInfoRouter = require("./ressources/patientOtherInfo/patientOtherInfo.router")
 const restApi = express.Router();
 
 restApi.use("/user", authRouter);
@@ -17,5 +19,7 @@ restApi.use("/private", privateRouter);
 restApi.use("/body-location", bodyLocationRouter);
 restApi.use("/speciality", specialityRouter);
 restApi.use("/patient", patientRouter);
+restApi.use("/patientOtherInfo", patientOtherInfoRouter);
+restApi.use("/doctor", doctorRouter);
 
 module.exports = restApi;
